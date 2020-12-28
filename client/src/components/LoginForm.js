@@ -1,3 +1,4 @@
+// see SignupForm.js for comments
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
@@ -21,7 +22,7 @@ const LoginForm = () => {
   const handleFormSubmit = async event => {
     event.preventDefault();
 
-     // validate form
+     // check if form has everything (as per react-bootstrap docs)
      const form = event.currentTarget;
      if (form.checkValidity() === false) {
        event.preventDefault();
@@ -38,6 +39,21 @@ const LoginForm = () => {
       console.error(e);
       setShowAlert(true);
     }
+
+    // try {
+    //   const response = await login(userFormData);
+
+    //   if (!response.ok) {
+    //     throw new Error('Something went wrong!');
+    //   }
+
+    //   const { token, user } = await response.json();
+    //   console.log(user);
+    //   Auth.login(token);
+    // } catch (err) {
+    //   console.error(err);
+    //   setShowAlert(true);
+    // }
 
     setUserFormData({
       username: '',

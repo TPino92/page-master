@@ -5,8 +5,18 @@ const secret = "purple";
 const expiration = "2h";
 
 module.exports = {
-  // authentication
+  // function for our authenticated routes
   authMiddleware: function ({ req }) {
+    // allows token to be sent via  req.query or headers
+    // let token = null;
+    //   if (req.body && req.body.token) {
+    //     token = req.body.token
+    //   } else if (req.query && req.query.token) {
+    //     token = req.query.token
+    //   } else if ( req.headers && req.headers.authorization) {
+    //     token = req.headers.authorization;
+    //     token = token.split(" ").pop().trim();
+    //   }
 
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -27,8 +37,11 @@ module.exports = {
       return { user };
     } catch {
       console.log("Invalid token");
-      return res.status(400).json({ message: "Invalid token!" });
+      // return res.status(400).json({ message: "invalid token!" });
     }
+
+    // send to next endpoint
+    // next();
     return req;
   },
   
